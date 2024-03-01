@@ -10,29 +10,29 @@
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-    queue_t *queue = NULL;
-    const binary_tree_t *current;
+	queue_t *queue = NULL;
+	const binary_tree_t *current;
 
-    if (tree == NULL || func == NULL)
-        return;
+	if (tree == NULL || func == NULL)
+		return;
 
-    queue = queue_create();
-    if (queue == NULL)
-        return;
+	queue = queue_create();
+	if (queue == NULL)
+		return;
 
-    queue_push(queue, (void *)tree);
+	queue_push(queue, (void *)tree);
 
-    while (!queue_is_empty(queue))
-    {
-        current = (const binary_tree_t *)queue_front(queue);
-        queue_pop(queue);
-        func(current->n);
+	while (!queue_is_empty(queue))
+	{
+		current = (const binary_tree_t *)queue_front(queue);
+		queue_pop(queue);
+		func(current->n);
 
-        if (current->left != NULL)
-            queue_push(queue, (void *)current->left);
-        if (current->right != NULL)
-            queue_push(queue, (void *)current->right);
-    }
+		if (current->left != NULL)
+			queue_push(queue, (void *)current->left);
+		if (current->right != NULL)
+			queue_push(queue, (void *)current->right);
+	}
 
-    queue_delete(queue);
+	queue_delete(queue);
 }
